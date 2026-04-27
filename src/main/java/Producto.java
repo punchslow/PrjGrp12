@@ -24,4 +24,10 @@ public class Producto {
         this.nombre = nombre;
         this.precio = precio;
     }
+
+    public void incrementarStock(int cantidad) {
+    if (cantidad <= 0)
+        throw new IllegalArgumentException("La cantidad debe ser positiva.");
+    this.stock += cantidad;
+}
 }
