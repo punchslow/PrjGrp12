@@ -5,4 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ENSO-maquinas_expendedoras</name>
   <description>Gestion maquinas expendedoras</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>
