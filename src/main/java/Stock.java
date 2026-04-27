@@ -3,7 +3,7 @@ public class Stock {
 	private Producto producto;
 	private int cantidad;
 	private Integer posicion_en_maquina;
-	private Integer cantidadBaja; //0 si aún hay suficientes productos, 1 si no hay suficientes productos
+	private boolean cantidadBaja; //false si aún hay suficientes productos, true si no hay suficientes productos
 	private int limiteCantidadBaja; //límite inferior de productos suficientes
 	
 	public Stock() {}
@@ -13,7 +13,7 @@ public class Stock {
 		this.producto = producto;
 		this.cantidad = cantidad;
 		this.posicion_en_maquina = posicion_en_maquina;
-		this.cantidadBaja = 0;
+		this.cantidadBaja = false;
 		this.limiteCantidadBaja = 0;
 	}
 	
@@ -36,6 +36,10 @@ public class Stock {
 	public void actualizarCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+
+    public boolean cantidadBaja() {
+        return this.cantidadBaja;
+    }
 	
 	public void avisoCantidadBaja() {
 		
