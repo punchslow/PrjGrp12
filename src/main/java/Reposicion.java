@@ -8,6 +8,8 @@ public class Reposicion {
     private Maquina maquina;
     private LocalDate fecha;
 
+    private static final List<Reposicion> historial = new ArrayList<>();
+
     private Reposicion(int[] productos, int[] cantidades, Maquina maquina, LocalDate fecha) {
         this.posiciones = productos;
         this.cantidades = cantidades;
@@ -39,7 +41,17 @@ public class Reposicion {
             throw new IllegalArgumentException("La fecha no debe ser nula.");
         }
 
-        return new Reposicion(posiciones, cantidades, maquina, fecha);
+        for (int i = 0; i < productos.length; i++) {
+            productos[i].incrementarStock(cantidades[i]);
+        }
+        
+        Reposicion reposicion = Reposicion.registrarReposicion(
+                productos, cantidades, maquina, LocalDate.now()
+        );
+        historialReposiciones.add(reposicion);
+
+
+        return reposicion;
     }
 
     public LocalDate getFecha() {
