@@ -33,7 +33,9 @@ public class Maquina {
     public String getFabricante() {return fabricante;}
 
     public void añadirStock(Producto p, int cantidad, int posicion) {
-
+        if(stock.containsKey(posicion))
+            throw new IllegalArgumentException("Stock ya existente");
+        stock.put(posicion,new Stock(this,p,cantidad,posicion));
     }
 
     public void eliminarStock(int posicion) {
@@ -45,7 +47,8 @@ public class Maquina {
         posiciones.sort(Integer::compareTo);
 
         for(Integer posicion : posiciones) {
-            System.out.println(stock.get(posicion));
+            Stock s = stock.get(posicion);
+            System.out.println("[Posición: "+s.getPosicion()+",Producto: "+s.getProducto()+",Cantidad: "+s.getCantidad()+"]");
         }
     }
 
@@ -58,9 +61,11 @@ public class Maquina {
             throw new IllegalArgumentException("Reposición inválida");
 
         for(int i = 0; i < reposicion.getCantidades().length; i++) {
-
+            Stock s = stock.get(reposicion.getPosicionesAsociados()[i]);
+            s.actualizarCantidad(s.getCantidad() + reposicion.getCantidades()[i]);
         }
 
+        reposiciones.add(reposicion);
     }
 
 
@@ -69,19 +74,27 @@ public class Maquina {
     }
 
     public void mostrarHistoricoReposiciones() {
-
+        for(Reposicion reposicion : reposiciones) {
+            System.out.println(reposicion);
+        }
     }
 
 
     public List<Stock> listarStocksInsuficientes() {
+        ArrayList<Stock> listaStocks = new ArrayList<>();
         for(Stock stock : stock.values()) {
+            if(stock.cantidadBaja()) listaStocks.add(stock);
+        }
+        listaStocks.sort(Comparator.comparing(Stock::getPosicion));
 
+        for(Stock stock : listaStocks) {
+            System.out.println(stock);
         }
 
-        return null;
+        return listaStocks;
     }
 
-    public Number calcularVelocidadConsumo(Producto producto) {
+    public float calcularVelocidadConsumo(Producto producto) {
 
 
         return 0;
