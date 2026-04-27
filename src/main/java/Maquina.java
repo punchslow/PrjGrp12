@@ -52,8 +52,10 @@ public class Maquina {
         }
     }
 
-    public void actualizarInventario(Venta venta) {
-
+    public void actualizarInventario(@NotNull Venta venta) {
+    	Stock s = stock.get(venta.getPosicionProducto());
+    	s.actualizarCantidad(s.getCantidad() - 1);
+    	this.ventas.add(venta);
     }
 
     public void actualizarInventario(@NotNull Reposicion reposicion) {
@@ -70,7 +72,9 @@ public class Maquina {
 
 
     public void mostrarHistoricoVentas() {
-
+    	for(Venta venta : ventas) {
+            System.out.println(venta);
+        }
     }
 
     public void mostrarHistoricoReposiciones() {
@@ -94,6 +98,10 @@ public class Maquina {
         return listaStocks;
     }
 
+    public Stock getStock(Integer pos) {
+    	return stock.get(pos);
+    }
+    
     public float calcularVelocidadConsumo(Producto producto) {
 
 

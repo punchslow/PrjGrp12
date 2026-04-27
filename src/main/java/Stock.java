@@ -35,6 +35,7 @@ public class Stock {
 	
 	public void actualizarCantidad(int cantidad) {
 		this.cantidad = cantidad;
+		avisoCantidadBaja();
 	}
 
     public boolean cantidadBaja() {
@@ -42,6 +43,15 @@ public class Stock {
     }
 	
 	public void avisoCantidadBaja() {
+		
+		calculoLimiteCantidadBaja();
+		if(cantidad < limiteCantidadBaja) {
+			cantidadBaja = true;
+			System.out.println("Aviso: se debe reponer el producto " + producto + ", en la posición " + posicion_en_maquina + ".");
+		}
+		else {
+			cantidadBaja = false;
+		}
 		
 	}
 	
