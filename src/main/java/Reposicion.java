@@ -42,7 +42,7 @@ public class Reposicion {
             throw new IllegalArgumentException("La fecha no debe ser nula.");
         }
         
-        Reposicion reposicion = Reposicion.registrarReposicion(
+        Reposicion reposicion = new Reposicion(
                 posiciones, cantidades, maquina, LocalDate.now()
         );
         historial.add(reposicion);
