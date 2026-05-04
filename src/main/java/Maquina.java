@@ -120,15 +120,25 @@ public class Maquina {
         HashMap<Stock, Float> map = new HashMap<>();
 
         for(Stock stock: listarStocksInsuficientes()) {
-            int cantidad = stock.getCantidad(); // Cantidad disponible actualmente
-            Producto p = stock.getProducto(); // Producto en esta posición. Utilizado para calcular la velocidad de consumo
-
-            // La velocidad se divide entre el número de stocks con el producto porque se asume que se reparte equitativamete entre ellos
-            float diasHastaAgotar = cantidad / (calcularVelocidadConsumo(p) / stocksDeProducto(p));
+            float diasHastaAgotar = diasHastaAgotar(stock);
             map.put(stock,diasHastaAgotar);
         }
 
         return map;
+    }
+
+    /**
+     * Calcula los días estimados hasta que se agote un stock
+     * @param stock el stock para calcular
+     * @return el número de días estimado hasta que se agote
+     */
+    public float diasHastaAgotar(Stock stock) {
+        int cantidad = stock.getCantidad(); // Cantidad disponible actualmente
+        Producto p = stock.getProducto(); // Producto en esta posición. Utilizado para calcular la velocidad de consumo
+
+        // La velocidad se divide entre el número de stocks con el producto porque se asume que se reparte equitativamete entre ellos
+        // No debería haber error si la velocidad es 0, ya que devuelve +inf
+        return cantidad / (calcularVelocidadConsumo(p) / stocksDeProducto(p));
     }
 
 
@@ -138,7 +148,7 @@ public class Maquina {
      * @param producto el producto
      * @return el número de stocks con el producto dado
      */
-    public int stocksDeProducto(Producto producto) {
+    private int stocksDeProducto(Producto producto) {
         // Mapea los stocks (stock.values) a sus correspondientes productos, filtra para escoger sólo los que son el producto dado y los cuenta
         return (int) stock.values().stream().map(Stock::getProducto).filter(p -> producto.getId().equals(p.getId())).count();
     }
@@ -159,10 +169,6 @@ public class Maquina {
                 venta.fecha.until(fechaActual, ChronoUnit.DAYS) <= 30
         ).count() / 30.0f;
     }
-
-
-
-
 
 
 	
