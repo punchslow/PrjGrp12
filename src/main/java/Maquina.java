@@ -1,10 +1,8 @@
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Maquina {
 
@@ -164,9 +162,9 @@ public class Maquina {
         // Filtra las ventas para mostrar sólo las que se corresponden con el producto dado en los últimos 30 días
         // Luego toma el recuento y lo divide entre 30
         return ventas.stream().filter(venta ->
-                this.getPosiciones().contains(venta.posicion_producto) && // Garantiza que no haya errores
-                this.getStock(venta.posicion_producto).getProducto().getId().equals(producto.getId()) && // Probablemente sería mejor sobreescribir equals en Producto
-                venta.fecha.until(fechaActual, ChronoUnit.DAYS) <= 30
+                this.getPosiciones().contains(venta.getPosicionProducto()) && // Garantiza que no haya errores
+                this.getStock(venta.getPosicionProducto()).getProducto().getId().equals(producto.getId()) && // Probablemente sería mejor sobreescribir equals en Producto
+                venta.getFecha().until(fechaActual, ChronoUnit.DAYS) <= 30
         ).count() / 30.0f;
     }
 

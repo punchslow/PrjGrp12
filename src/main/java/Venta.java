@@ -1,9 +1,9 @@
 import java.time.LocalDate;
 
 public class Venta {
-    public LocalDate fecha;
-    public int posicion_producto;
-    public Maquina maquinaAsociada;
+    private LocalDate fecha;
+    private int posicion_producto;
+    private Maquina maquinaAsociada;
 
     public Venta(int posicion_producto, LocalDate fecha, Maquina maquinaAsociada) {
         this.posicion_producto = posicion_producto;
