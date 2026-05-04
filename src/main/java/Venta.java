@@ -1,31 +1,33 @@
 import java.time.LocalDate;
 
 public class Venta {
-    public LocalDate fecha;
-    public int posicion_producto;
-    public Maquina maquinaAsociada;
+    private LocalDate fecha;
+    private int posicion_producto;
+    private Maquina maquinaAsociada;
 
-    public Venta() {
-
+    public Venta(int posicion_producto, LocalDate fecha, Maquina maquinaAsociada) {
+        this.posicion_producto = posicion_producto;
+        this.maquinaAsociada = maquinaAsociada;
+        this.fecha = fecha;
     }
-    public void registrarVenta(int pos_producto, Maquina maquina, LocalDate fecha) {
-        if(pos_producto < 0) {
-            System.out.println("Error: Posición inválida.");
-            return;
-        }
+
+    // Actualizada para crear una instancia de Venta desde un contexto estático y devolver esa instancia
+    public static Venta registrarVenta(int pos_producto, Maquina maquina, LocalDate fecha) {
         if(maquina == null) {
-            System.out.println("Error: La máquina no puede ser nula.");
-            return;
+            throw new IllegalArgumentException("La máquina no puede ser nula.");
+        }
+        if(pos_producto < 0 || !maquina.getPosiciones().contains(pos_producto)) {
+            throw new IllegalArgumentException("Posición inválida.");
         }
         if(fecha == null) {
-            System.out.println("Error: La fecha no puede ser nula.");
-            return;
+            throw new IllegalArgumentException("La fecha no puede ser nula.");
         }
-        this.posicion_producto = pos_producto;
-        this.maquinaAsociada = maquina;
-        this.fecha = fecha;
+
+        Venta venta = new Venta(pos_producto, fecha, maquina);
+        maquina.actualizarInventario(venta);
+
         
-        maquinaAsociada.actualizarInventario(this);
+        return venta;
     }
 
     public LocalDate getFecha() {

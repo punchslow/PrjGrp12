@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reposicion {
@@ -10,8 +11,8 @@ public class Reposicion {
 
     private static final List<Reposicion> historial = new ArrayList<>();
 
-    private Reposicion(int[] productos, int[] cantidades, Maquina maquina, LocalDate fecha) {
-        this.posiciones = productos;
+    private Reposicion(int[] posiciones, int[] cantidades, Maquina maquina, LocalDate fecha) {
+        this.posiciones = posiciones;
         this.cantidades = cantidades;
         this.maquina = maquina;
         this.fecha = fecha;
@@ -40,15 +41,13 @@ public class Reposicion {
         if (fecha == null) {
             throw new IllegalArgumentException("La fecha no debe ser nula.");
         }
-
-        for (int i = 0; i < productos.length; i++) {
-            productos[i].incrementarStock(cantidades[i]);
-        }
         
-        Reposicion reposicion = Reposicion.registrarReposicion(
-                productos, cantidades, maquina, LocalDate.now()
+        Reposicion reposicion = new Reposicion(
+                posiciones, cantidades, maquina, LocalDate.now()
         );
-        historialReposiciones.add(reposicion);
+        historial.add(reposicion);
+
+        maquina.actualizarInventario(reposicion);
 
 
         return reposicion;
@@ -64,5 +63,22 @@ public class Reposicion {
 
     public int[] getCantidades() {
         return cantidades;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Reposición ").append(fecha);
+
+        for(int i=0; i<posiciones.length; i++) {
+            if(!maquina.getPosiciones().contains(posiciones[i])) continue;
+
+            builder.append("\n\t")
+                    .append(maquina.getStock(posiciones[i]).getProducto().getNombre())
+                    .append(" (posición ").append(posiciones[i]).append(") x").append(cantidades[i]);
+        }
+
+        return builder.toString();
     }
 }

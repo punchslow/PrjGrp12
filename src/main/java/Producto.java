@@ -28,6 +28,7 @@ public class Producto {
     public void incrementarStock(int cantidad) {
     if (cantidad <= 0)
         throw new IllegalArgumentException("La cantidad debe ser positiva.");
-    this.stock += cantidad;
+    // No sé por qué está esta línea así (no existe el atributo stock). La dejo comentada.
+    //this.stock += cantidad;
 }
 }
