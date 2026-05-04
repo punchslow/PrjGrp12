@@ -35,7 +35,6 @@ public class Stock {
 	
 	public void actualizarCantidad(int cantidad) {
 		this.cantidad = cantidad;
-		this.cantidadBaja = cantidad < limiteCantidadBaja;
 		avisoCantidadBaja();
 	}
 
@@ -54,6 +53,12 @@ public class Stock {
 		// Tomamos la cantidad baja como la cantidad que se espera que se vaya a gastar en un día
 		// Por tanto, basta con tomar el valor de la velocidad de consumo en unidades/día
 		this.limiteCantidadBaja = (int) Math.ceil(maquina.diasHastaAgotar(this));
+		this.cantidadBaja = cantidad < limiteCantidadBaja;
+	}
+
+	@Override
+	public String toString() {
+		return "Stock{" + "Máquina=" + maquina + ", Producto:"+producto+", Cantidad: "+cantidad+", Posición: "+posicion_en_maquina+"}";
 	}
 }
 
