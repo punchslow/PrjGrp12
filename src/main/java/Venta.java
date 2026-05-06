@@ -11,6 +11,10 @@ public class Venta {
         this.fecha = fecha;
     }
 
+    public static Venta registrarVenta(int posicion_producto, Maquina maquina) {
+        return registrarVenta(posicion_producto, maquina, LocalDate.now());
+    }
+
     // Actualizada para crear una instancia de Venta desde un contexto estático y devolver esa instancia
     public static Venta registrarVenta(int pos_producto, Maquina maquina, LocalDate fecha) {
         if(maquina == null) {
@@ -25,8 +29,9 @@ public class Venta {
 
         Venta venta = new Venta(pos_producto, fecha, maquina);
         maquina.actualizarInventario(venta);
+        System.out.println("Registrada venta: " + venta);
 
-        
+
         return venta;
     }
 

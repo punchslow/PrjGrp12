@@ -20,6 +20,10 @@ public class Reposicion {
         maquina.actualizarInventario(this);
     }
 
+    public static Reposicion registrarReposicion(int[] posiciones, int[] cantidades, Maquina maquina) {
+        return registrarReposicion(posiciones, cantidades, maquina, LocalDate.now());
+    }
+
     public static Reposicion registrarReposicion(
             int[] posiciones,
             int[] cantidades,
@@ -49,6 +53,7 @@ public class Reposicion {
 
         maquina.actualizarInventario(reposicion);
 
+        System.out.println("Registrada "+reposicion);
 
         return reposicion;
     }
