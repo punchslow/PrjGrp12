@@ -15,13 +15,18 @@ public class Maquina {
 
     private ArrayList<Venta> ventas;
     private ArrayList<Reposicion> reposiciones;
+    private int rango; // número máximo de posiciones de la máquina
 
-    public Maquina(String id, float longitud, float latitud, String modelo, String fabricante) {
+    public Maquina(String id, float longitud, float latitud, String modelo, String fabricante, int rango) {
         this.id = id;
         this.longitud = longitud;
         this.latitud = latitud;
         this.modelo = modelo;
         this.fabricante = fabricante;
+        this.stock = new HashMap<>();
+        this.ventas = new ArrayList<>();
+        this.reposiciones = new ArrayList<>();
+        this.rango = rango;
     }
 
 
@@ -33,6 +38,10 @@ public class Maquina {
     // Añadido para comprobar las posiciones que tiene la máquina
     // Debería ser una función que devuelva un boolean para impedir que otras clases modifiquen el Set
     public Set<Integer> getPosiciones() {return stock.keySet();}
+    public HashMap<Integer, Stock> getStock() {return stock;}
+    public ArrayList<Venta> getVentas() {return ventas;}
+    public ArrayList<Reposicion> getReposiciones() {return reposiciones;}
+    public int getRango() {return rango;}
 
     public Stock getStock(Integer pos) {
         return stock.get(pos);
@@ -45,7 +54,34 @@ public class Maquina {
     }
 
     public void eliminarStock(int posicion) {
+        if (posicion <= 0 || posicion > rango)
+            throw new IllegalArgumentException(
+                "Posición fuera de rango: debe estar entre 1 y " + rango + ".");
+        if (!stock.containsKey(posicion))
+            throw new IllegalArgumentException(
+                "Posición vacía: no hay stock en la posición " + posicion + ".");
         stock.remove(posicion);
+    }
+
+    public void moverStock(int posOrigen, int posDestino) {
+        if (posOrigen <= 0 || posOrigen > rango)
+            throw new IllegalArgumentException(
+                "Posición origen fuera de rango: debe estar entre 1 y " + rango + ".");
+        if (!stock.containsKey(posOrigen))
+            throw new IllegalArgumentException(
+                "Posición origen vacía: no hay stock en la posición " + posOrigen + ".");
+     
+        if (posDestino <= 0 || posDestino > rango)
+            throw new IllegalArgumentException(
+                "Posición destino fuera de rango: debe estar entre 1 y " + rango + ".");
+        if (stock.containsKey(posDestino))
+            throw new IllegalArgumentException(
+                "Posición destino ocupada: ya existe stock en la posición " + posDestino + ".");
+     
+        Stock s = stock.get(posOrigen);
+        stock.remove(posOrigen);
+        s.cambiarPosicion(posDestino);
+        stock.put(posDestino, s);
     }
 
     public void consultarInventario() {
