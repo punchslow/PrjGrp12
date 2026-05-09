@@ -20,15 +20,24 @@ public class Producto {
     }
 
     public void registrarProducto(String id, String nombre, float precio) {
+        if (id == null || id.isBlanck()) {
+            throw new IllegalArgumentException("El identificador no puede estar vacío.");
+        }
+        if (nombre == null || nombre.isBlanck()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        if (precio <= 0) {
+            throw new IllegalArgumentException("El precio debe ser positivo.");
+        }
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public void incrementarStock(int cantidad) {
-    if (cantidad <= 0)
-        throw new IllegalArgumentException("La cantidad debe ser positiva.");
-    // No sé por qué está esta línea así (no existe el atributo stock). La dejo comentada.
-    //this.stock += cantidad;
-}
+    public void establecerPrecio (float nuevoPrecio) {
+        if (nuevoPrecio <= 0) {
+            throw new IllegalArgumentException("El nuevo precio debe ser positivo.");
+        }
+        this.precio = nuevoPrecio;
+    }
 }
