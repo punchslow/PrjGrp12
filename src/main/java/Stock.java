@@ -9,6 +9,18 @@ public class Stock {
 	public Stock() {}
 	
 	public Stock(Maquina maquina, Producto producto, int cantidad, Integer posicion_en_maquina) {
+		if (maquina == null) {
+			throw new IllegalArgumentException("La máquina no puede ser nula.");
+		}
+		if (producto == null) {
+			throw new IllegalArgumentException("El producto no puede ser nulo.");
+		}
+		if (cantidad < 0) {
+			throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+		}
+		if (posicion_en_maquina == null || posicion_en_maquina <= 0) {
+			throw new IllegalArgumentException("La posición es inválida.");
+		}
 		this.maquina = maquina;
 		this.producto = producto;
 		this.cantidad = cantidad;
@@ -34,6 +46,9 @@ public class Stock {
 	}
 	
 	public void actualizarCantidad(int cantidad) {
+		if (cantidad < 0) {
+			throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+		}
 		this.cantidad = cantidad;
 		avisoCantidadBaja();
 	}
@@ -44,8 +59,8 @@ public class Stock {
 	
 	public void avisoCantidadBaja() {
 		calculoLimiteCantidadBaja();
-		if(cantidad < limiteCantidadBaja) {
-			System.out.println("Aviso: se debe reponer el producto " + producto + ", en la posición " + posicion_en_maquina + ".");
+		if(cantidad <= limiteCantidadBaja) {
+			System.out.println("Aviso: se debe reponer el producto " + producto.getNombre + ", en la posición " + posicion_en_maquina + ".");
 		}
 	}
 	
@@ -53,7 +68,7 @@ public class Stock {
 		// Tomamos la cantidad baja como la cantidad que se espera que se vaya a gastar en un día
 		// Por tanto, basta con tomar el valor de la velocidad de consumo en unidades/día
 		this.limiteCantidadBaja = (int) Math.ceil(maquina.diasHastaAgotar(this));
-		this.cantidadBaja = cantidad < limiteCantidadBaja;
+		this.cantidadBaja = cantidad <= limiteCantidadBaja;
 	}
 
 	@Override
