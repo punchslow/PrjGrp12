@@ -60,7 +60,7 @@ public class Stock {
 	public void avisoCantidadBaja() {
 		calculoLimiteCantidadBaja();
 		if(cantidad <= limiteCantidadBaja) {
-			System.out.println("Aviso: se debe reponer el producto " + producto.getNombre + ", en la posición " + posicion_en_maquina + ".");
+			System.out.println("Aviso: se debe reponer el producto " + producto.getNombre() + ", en la posición " + posicion_en_maquina + ".");
 		}
 	}
 	
