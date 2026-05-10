@@ -46,9 +46,19 @@ public class Reposicion {
             throw new IllegalArgumentException("La fecha no debe ser nula.");
         }
         
-        Reposicion reposicion = new Reposicion(
-                posiciones, cantidades, maquina, LocalDate.now()
-        );
+        // Validación de rango de posiciones y cantidades
+        int rango = maquina.getRango();
+        for (int pos : posiciones) {
+            if (pos <= 0 || pos > rango) {
+                throw new IllegalArgumentException("Posición fuera de rango: " + pos);
+            }
+        }
+        for (int cant : cantidades) {
+            if (cant <= 0) {
+                throw new IllegalArgumentException("La cantidad debe ser positiva.");
+            }
+        }
+        Reposicion reposicion = new Reposicion(posiciones, cantidades, maquina, fecha);
         historial.add(reposicion);
 
         maquina.actualizarInventario(reposicion);

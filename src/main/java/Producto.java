@@ -15,15 +15,11 @@ public class Producto {
         return precio;
     }
 
-    public void establecerPrecio(float precio) {
-        this.precio = precio;
-    }
-
     public void registrarProducto(String id, String nombre, float precio) {
-        if (id == null || id.isBlanck()) {
+        if (id == null || id.isEmpty()) {
             throw new IllegalArgumentException("El identificador no puede estar vacío.");
         }
-        if (nombre == null || nombre.isBlanck()) {
+        if (nombre == null || nombre.isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
         if (precio <= 0) {
