@@ -2,10 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ActualizarVentasMaquinaTest {
+public class ActualizarVentasMaquinaTest {
 
 	@Test
-	void test() {
+	public void test() {
 		fail("Not yet implemented");
 	}
 
