@@ -12,7 +12,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P101", "Coca-Cola", 2.5f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
         Stock s = new Stock(m, p, 10, 1);
 
         s.actualizarCantidad(8);
@@ -26,7 +26,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P201", "Agua", 0.01f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
         Stock s = new Stock(m, p, 10, 2);
 
         s.actualizarCantidad(5);
@@ -40,7 +40,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P003", "Nestea", 2.0f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
         Stock s = new Stock(m, p, 10, 3);
 
         s.actualizarCantidad(2);
@@ -56,7 +56,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P004", "Oreo", 1.5f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
         Stock s = new Stock(m, p, 10, 4);
 
         assertThrows(
@@ -71,7 +71,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P005", "KitKat", 2.2f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
         Stock s = new Stock(m, p, 10, 5);
 
         assertThrows(
@@ -85,7 +85,7 @@ class ActualizarStockTest {
     @Test
     void crearStockConProductoNull() {
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
 
         assertThrows(
             IllegalArgumentException.class,
@@ -111,7 +111,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P007", "Pringles", 3.0f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
 
         assertThrows(
             IllegalArgumentException.class,
@@ -125,7 +125,7 @@ class ActualizarStockTest {
         Producto p = new Producto();
         p.registrarProducto("P008", "Twix", 1.9f);
 
-        Maquina m = new Maquina();
+        Maquina m = new Maquina("M001", 42.8805f, -8.5457f, "ModeloX", "FabricanteY", 20);
 
         assertThrows(
             IllegalArgumentException.class,
