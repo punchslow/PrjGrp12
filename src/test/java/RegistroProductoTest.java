@@ -4,9 +4,189 @@ import org.junit.jupiter.api.Test;
 
 public class RegistroProductoTest {
 
+    // Casos válidos
+
+    @Test
+    void registrarProductoValido() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P101", "Coca-Cola", 2.5f);
+
+        assertEquals("P101", p.getId());
+        assertEquals("Coca-Cola", p.getNombre());
+        assertEquals(2.5f, p.getPrecio());
+    }
+
+    @Test
+    void cambiarPrecioValido1() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P201", "Agua", 0.01f);
+        p.establecerPrecio(1.0f);
+
+        assertEquals(1.0f, p.getPrecio());
+    }
+
+	@Test
+    void cambiarPrecioValido2() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P305", "Café", 1.3f);
+        p.establecerPrecio(1.3f);
+
+        assertEquals(1.3f, p.getPrecio());
+    }
+
+
+    // ID inválido
+
 	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
+    void registrarProductoConIdInvalido() {
 
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto(1, "Pringles", 1.5f)
+        );
+    }
+
+    @Test
+    void registrarProductoConIdVacio() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("", "Agua", 1.0f)
+        );
+    }
+
+    @Test
+    void registrarProductoConIdNull() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto(null, "KitKat", 2.5f)
+        );
+    }
+
+    // Nombre inválido
+
+	@Test
+    void registrarProductoConNombreInvalido() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P002", 2, 1.1f)
+        );
+    }
+
+    @Test
+    void registrarProductoConNombreVacio() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P003", "", 0.9f)
+        );
+    }
+
+    @Test
+    void registrarProductoConNombreNull() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P004", null, 2.5f)
+        );
+    }
+
+    // Precio inválido
+
+    @Test
+    void registrarProductoConPrecioCero() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P005", "Oreo", 0f)
+        );
+    }
+
+    @Test
+    void registrarProductoConPrecioNegativo() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P006", "Nestea", -2.5f)
+        );
+    }
+
+	@Test
+    void registrarProductoConPrecioInvalido() {
+
+        Producto p = new Producto();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.registrarProducto("P007", "Aquarius", "dos")
+        );
+    }
+
+    // Nuevo precio inválido
+
+    @Test
+    void cambiarPrecioACero() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P008", "Manzana", 2.5f);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.establecerPrecio(0f)
+        );
+    }
+
+    @Test
+    void cambiarPrecioANegativo() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P009", "Plátano", 2.2f);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.establecerPrecio(-2.5f)
+        );
+    }
+
+	@Test
+    void cambiarPrecioAInvalido() {
+
+        Producto p = new Producto();
+
+        p.registrarProducto("P010", "Kinder", 2.8f);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> p.establecerPrecio("tresS")
+        );
+    }
 }
