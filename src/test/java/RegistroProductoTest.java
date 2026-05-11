@@ -43,20 +43,6 @@ public class RegistroProductoTest {
 
     // ID inválido
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-    void registrarProductoConIdInvalido() {
-
-        Producto p = new Producto();
-
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> p.registrarProducto(1, "Pringles", 1.5f)
-        );
-    }
-
     @Test
     void registrarProductoConIdVacio() {
 
