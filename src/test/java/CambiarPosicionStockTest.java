@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CambiarPosicionStockTest {
+public class CambiarPosicionStockTest {
 
 	private static final int R = 10;
 
@@ -80,6 +80,8 @@ class CambiarPosicionStockTest {
 		assertThrows(NullPointerException.class,
 			() -> { Stock s = null; s.getPosicion(); },
 			"Stock nulo debe lanzar NullPointerException");
+	public void test() {
+		fail("Not yet implemented");
 	}
 
 	// Clase (1)(5)
