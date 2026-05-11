@@ -17,6 +17,10 @@ public class Maquina {
     private ArrayList<Reposicion> reposiciones;
     private int rango; // número máximo de posiciones de la máquina
 
+    public Maquina() {
+		this.id = "";	
+    }
+    
     public Maquina(String id, float longitud, float latitud, String modelo, String fabricante, int rango) {
         this.id = id;
         this.longitud = longitud;
@@ -42,6 +46,7 @@ public class Maquina {
     public ArrayList<Venta> getVentas() {return ventas;}
     public ArrayList<Reposicion> getReposiciones() {return reposiciones;}
     public int getRango() {return rango;}
+    public void setRango(int rango) {this.rango = rango;};
 
     public Stock getStock(Integer pos) {
         return stock.get(pos);
