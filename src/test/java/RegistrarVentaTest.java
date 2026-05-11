@@ -1,4 +1,3 @@
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,8 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.Arguments;
 
-class RegistrarVentaTest {
-
+public class RegistrarVentaTest {
 	
 	private static Producto mockedproducto;
 	private static Maquina maquina;
@@ -29,9 +27,10 @@ class RegistrarVentaTest {
 	    when(mockedproducto.getNombre()).thenReturn("Producto");
 	    
 	    maquina = new Maquina("prueba", 1, -1, "modeloprueba", "fabricanteprueba", 20);
+
 	}
 	
-	
+
 	
 	//rango de la máquina R = 20
 	static Stream<Arguments> argumentos_validos(){

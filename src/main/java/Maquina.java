@@ -102,6 +102,8 @@ public class Maquina {
     public void actualizarInventario(@NotNull Venta venta) {
         if(!stock.containsKey(venta.getPosicionProducto()))
             throw new IllegalArgumentException("Stock no existente");
+        else if(stock.get(venta.getPosicionProducto()).getCantidad() == 0)
+            throw new IllegalArgumentException("Stock vacío");
 
     	Stock s = stock.get(venta.getPosicionProducto());
     	s.actualizarCantidad(s.getCantidad() - 1);
