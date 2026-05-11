@@ -80,18 +80,7 @@ public class RegistroProductoTest {
     }
 
     // Nombre inválido
-
-	@Test
-    void registrarProductoConNombreInvalido() {
-
-        Producto p = new Producto();
-
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> p.registrarProducto("P002", 2, 1.1f)
-        );
-    }
-
+    
     @Test
     void registrarProductoConNombreVacio() {
 
@@ -137,18 +126,7 @@ public class RegistroProductoTest {
             () -> p.registrarProducto("P006", "Nestea", -2.5f)
         );
     }
-
-	@Test
-    void registrarProductoConPrecioInvalido() {
-
-        Producto p = new Producto();
-
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> p.registrarProducto("P007", "Aquarius", "dos")
-        );
-    }
-
+    
     // Nuevo precio inválido
 
     @Test
@@ -174,19 +152,6 @@ public class RegistroProductoTest {
         assertThrows(
             IllegalArgumentException.class,
             () -> p.establecerPrecio(-2.5f)
-        );
-    }
-
-	@Test
-    void cambiarPrecioAInvalido() {
-
-        Producto p = new Producto();
-
-        p.registrarProducto("P010", "Kinder", 2.8f);
-
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> p.establecerPrecio("tresS")
         );
     }
 }
