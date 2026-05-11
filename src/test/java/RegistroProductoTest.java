@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class RegistroProductoTest {
+public class RegistroProductoTest {
 
     // Casos válidos
 
@@ -44,6 +44,9 @@ class RegistroProductoTest {
     // ID inválido
 
 	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
     void registrarProductoConIdInvalido() {
 
         Producto p = new Producto();
