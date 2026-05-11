@@ -17,7 +17,7 @@ public class Reposicion {
         this.maquina = maquina;
         this.fecha = fecha;
 
-        maquina.actualizarInventario(this);
+        //maquina.actualizarInventario(this);
     }
 
     public static Reposicion registrarReposicion(int[] posiciones, int[] cantidades, Maquina maquina) {
