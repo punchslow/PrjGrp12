@@ -36,4 +36,32 @@ public class Producto {
         }
         this.precio = nuevoPrecio;
     }
+    
+    /*
+    @Override
+    public boolean equals(Object obj) {
+        
+        if (this == obj) {
+            return true;
+        }
+        
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Producto otro = (Producto) obj;
+
+        return this.getId() == otro.getId();
+    }
+    
+    @Override
+    public int hashCode() {
+    	
+        int hash = 7; 
+        
+        hash = 31 * hash + (getId() == null ? 0 : getId().hashCode());
+        
+        return hash;
+    } */
+
 }

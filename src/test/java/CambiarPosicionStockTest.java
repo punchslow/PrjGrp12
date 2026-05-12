@@ -80,8 +80,6 @@ public class CambiarPosicionStockTest {
 		assertThrows(NullPointerException.class,
 			() -> { Stock s = null; s.getPosicion(); },
 			"Stock nulo debe lanzar NullPointerException");
-	public void test() {
-		fail("Not yet implemented");
 	}
 
 	// Clase (1)(5)

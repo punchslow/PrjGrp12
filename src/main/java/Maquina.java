@@ -22,7 +22,12 @@ public class Maquina {
     }
     
     public Maquina(String id, float longitud, float latitud, String modelo, String fabricante, int rango) {
-        this.id = id;
+    	
+    	if(id == null || id == "") {
+            throw new IllegalArgumentException("El id no puede ser nulo o vacío.");
+        }
+    	
+    	this.id = id;
         this.longitud = longitud;
         this.latitud = latitud;
         this.modelo = modelo;
