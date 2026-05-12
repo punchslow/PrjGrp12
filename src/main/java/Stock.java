@@ -15,10 +15,10 @@ public class Stock {
 		if (producto == null) {
 			throw new IllegalArgumentException("El producto no puede ser nulo.");
 		}
-		if (cantidad < 0) {
-			throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+		if (cantidad <= 0) {
+			throw new IllegalArgumentException("La cantidad no puede ser negativa ni nula.");
 		}
-		if (posicion_en_maquina == null || posicion_en_maquina <= 0) {
+		if (posicion_en_maquina == null || posicion_en_maquina <= 0 || posicion_en_maquina > maquina.getRango()) {
 			throw new IllegalArgumentException("La posición es inválida.");
 		}
 		this.maquina = maquina;

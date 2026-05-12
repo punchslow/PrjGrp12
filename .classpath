@@ -41,10 +41,10 @@
 			<accessrule kind="accessible" pattern="com/sun/javafx/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="/home/dalbiit/Downloads/mockito-5.23/byte-buddy-1.17.7.jar"/>
 	<classpathentry kind="lib" path="/home/dalbiit/Downloads/mockito-5.23/byte-buddy-agent-1.17.7.jar"/>
 	<classpathentry kind="lib" path="/home/dalbiit/Downloads/mockito-5.23/mockito-core-5.23.0.jar"/>
 	<classpathentry kind="lib" path="/home/dalbiit/Downloads/mockito-5.23/objenesis-3.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

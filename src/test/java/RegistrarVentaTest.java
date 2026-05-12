@@ -111,7 +111,7 @@ public class RegistrarVentaTest {
 		maquina.añadirStock(mockedproducto, cantidad, posicion);
 		
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Venta(posicion, maquina, LocalDate.parse(fecha)));
-		assertEquals("La cantidad no puede ser negativa.", exception.getMessage());
+		assertEquals("Stock vacío", exception.getMessage());
 		
 	}
 	
