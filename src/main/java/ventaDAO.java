@@ -11,7 +11,7 @@ public class ventaDAO {
     }
 
     public Venta crear(int posicionProducto, Maquina maquina, LocalDate fecha) {
-        Venta v = Venta.registrarVenta(posicionProducto, maquina, fecha);
+        Venta v = new Venta(posicionProducto, maquina, fecha);
         ventas.add(v);
         return v;
     }
