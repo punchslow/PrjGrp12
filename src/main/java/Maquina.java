@@ -144,7 +144,7 @@ public class Maquina {
 
     public List<Stock> listarStocksInsuficientes() {
         ArrayList<Stock> listaStocks = new ArrayList<>();
-        for(Stock stock : stock.values()) {
+        for(Stock stock : getStock().values()) {
             if(stock.cantidadBaja()) listaStocks.add(stock);
         }
         listaStocks.sort(Comparator.comparing(Stock::getPosicion));
@@ -196,7 +196,7 @@ public class Maquina {
      */
     private int stocksDeProducto(Producto producto) {
         // Mapea los stocks (stock.values) a sus correspondientes productos, filtra para escoger sólo los que son el producto dado y los cuenta
-        return (int) stock.values().stream().map(Stock::getProducto).filter(p -> producto.getId().equals(p.getId())).count();
+        return (int) getStock().values().stream().map(Stock::getProducto).filter(p -> producto.getId().equals(p.getId())).count();
     }
 
     /**
