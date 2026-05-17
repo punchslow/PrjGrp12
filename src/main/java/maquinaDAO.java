@@ -25,6 +25,8 @@ public class maquinaDAO {
     }
 
     public List<Maquina> buscarPorFabricante(String fabricante) {
+        if(fabricante == null || fabricante.isEmpty())
+            throw new IllegalArgumentException("Fabricante inválido");
         return maquinas.stream()
                 .filter(m -> m.getFabricante().equals(fabricante))
                 .toList();
