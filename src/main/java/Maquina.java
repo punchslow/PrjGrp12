@@ -3,6 +3,7 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Maquina {
 
@@ -109,11 +110,22 @@ public class Maquina {
             throw new IllegalArgumentException("Stock no existente");
         else if(stock.get(venta.getPosicionProducto()).getCantidad() == 0)
             throw new IllegalArgumentException("Stock vacío");
+        else if(venta.getPosicionProducto() <= 0 || venta.getPosicionProducto() > this.getRango())
+            throw new IllegalArgumentException("Posición fuera de rango.");
 
-    	Stock s = stock.get(venta.getPosicionProducto());
-    	s.actualizarCantidad(s.getCantidad() - 1);
+    	Stock stockVenta = stock.get(venta.getPosicionProducto());
+    	stockVenta.actualizarCantidad(stockVenta.getCantidad() - 1);
 
     	this.ventas.add(venta);
+
+        ArrayList<Stock> otrosStocksProducto = stock.values().stream().filter(s ->
+                        s.getProducto().equals(stockVenta.getProducto())
+                        && !s.equals(stockVenta)
+                ).collect(Collectors.toCollection(ArrayList::new));
+
+        for(Stock s: otrosStocksProducto) {
+            s.avisoCantidadBaja();
+        }
     }
 
     public void actualizarInventario(@NotNull Reposicion reposicion) {
@@ -214,6 +226,16 @@ public class Maquina {
                 this.getStock(venta.getPosicionProducto()).getProducto().getId().equals(producto.getId()) && // Probablemente sería mejor sobreescribir equals en Producto
                 venta.getFecha().until(fechaActual, ChronoUnit.DAYS) <= 30
         ).count() / 30.0f;
+    }
+
+    /**
+     * Devuelve la velocidad estimada de consumo de un stock en unidades por día.
+     * La velocidad es estimada por el promedio del consumo del producto en los últimos 30 días entre eñ número de stocks con ese producto
+     * @param s el stock
+     * @return la velocidad estimada de consumo en unidades/día
+     */
+    public float calcularVelocidadConsumo(Stock s) {
+        return calcularVelocidadConsumo(s.getProducto()) / stocksDeProducto(s.getProducto());
     }
 
 

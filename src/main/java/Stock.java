@@ -67,7 +67,7 @@ public class Stock {
 	public void calculoLimiteCantidadBaja() {
 		// Tomamos la cantidad baja como la cantidad que se espera que se vaya a gastar en un día
 		// Por tanto, basta con tomar el valor de la velocidad de consumo en unidades/día
-		this.limiteCantidadBaja = (int) Math.ceil(maquina.diasHastaAgotar(this));
+		this.limiteCantidadBaja = (int) Math.ceil(maquina.calcularVelocidadConsumo(this));
 		this.cantidadBaja = cantidad <= limiteCantidadBaja;
 	}
 
