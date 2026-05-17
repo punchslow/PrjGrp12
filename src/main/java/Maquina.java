@@ -130,7 +130,16 @@ public class Maquina {
 
     public void actualizarInventario(@NotNull Reposicion reposicion) {
         if(reposicion.getPosicionesAsociados().length != reposicion.getCantidades().length)
-            throw new IllegalArgumentException("Reposición inválida");
+            throw new IllegalArgumentException("Reposición inválida: tamaños de array distintos");
+        if(reposicion.getPosicionesAsociados().length <= 0)
+            throw new IllegalArgumentException("Reposición inválida: lista de posiciones vacía");
+        for(int pos : reposicion.getPosicionesAsociados()) {
+            if(!stock.containsKey(pos)) throw new IllegalArgumentException("Posición "+pos+" no existente en la máquina.");
+            if(pos<=0 || pos>getRango()) throw new IllegalArgumentException("Posición "+pos+" fuera de rango.");
+
+        }
+        for(int cant : reposicion.getCantidades())
+            if(cant <= 0) throw new IllegalArgumentException("Cantidad "+cant +" inválida (no positiva).");
 
         for(int i = 0; i < reposicion.getCantidades().length; i++) {
             Stock s = stock.get(reposicion.getPosicionesAsociados()[i]);
