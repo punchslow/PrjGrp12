@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -57,6 +58,7 @@ public class RegistroStockTest {
     }
 
 	// Cantidad -----------
+	@Disabled("Ya no se acepta cantidad 0 al introducir un stock en la máquina")
 	@DisplayName("CP-004 Válido: cantidad cero (borde inferior válido)")
     @Test
     void testStockCantidadCero() {

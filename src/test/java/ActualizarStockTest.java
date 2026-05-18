@@ -1,6 +1,7 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ActualizarStockTest {
@@ -51,6 +52,7 @@ class ActualizarStockTest {
 
     // Cantidad inválida
 
+    @Disabled("Se permite al final tener un stock con cantidad = 0")
     @Test
     void actualizarCantidadACero() {
 

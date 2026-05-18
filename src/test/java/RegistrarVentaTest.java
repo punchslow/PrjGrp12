@@ -104,11 +104,12 @@ public class RegistrarVentaTest {
 	@Test
 	void testRegistrarVentaCantidadInvalida() {
 		
-		int cantidad = 0;
+		int cantidad = 1;
 		int posicion = Math.ceilDiv(20, 3);
 		String fecha = "2023-03-19";
 		
 		maquina.añadirStock(mockedproducto, cantidad, posicion);
+		maquina.getStock(posicion).actualizarCantidad(0);
 		
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Venta(posicion, maquina, LocalDate.parse(fecha)));
 		assertEquals("Stock vacío", exception.getMessage());
