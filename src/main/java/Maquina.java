@@ -101,7 +101,7 @@ public class Maquina {
 
         for(Integer posicion : posiciones) {
             Stock s = stock.get(posicion);
-            System.out.println("[Posición: "+s.getPosicion()+",Producto: "+s.getProducto()+",Cantidad: "+s.getCantidad()+"]");
+            System.out.println("[Posición: "+s.getPosicion()+",Producto: "+s.getProducto().getId()+",Cantidad: "+s.getCantidad()+"]");
         }
     }
 
@@ -136,7 +136,6 @@ public class Maquina {
         for(int pos : reposicion.getPosicionesAsociados()) {
             if(!stock.containsKey(pos)) throw new IllegalArgumentException("Posición "+pos+" no existente en la máquina.");
             if(pos<=0 || pos>getRango()) throw new IllegalArgumentException("Posición "+pos+" fuera de rango.");
-
         }
         for(int cant : reposicion.getCantidades())
             if(cant <= 0) throw new IllegalArgumentException("Cantidad "+cant +" inválida (no positiva).");
